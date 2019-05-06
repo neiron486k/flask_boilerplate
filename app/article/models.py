@@ -1,8 +1,8 @@
-from app import db, ma
+from app import db
 
 
 class Article(db.Model):
-    __tablename__ = 'articles'
+    __tablename__: str = 'articles'
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80), unique=False, nullable=False)
@@ -11,10 +11,10 @@ class Article(db.Model):
     def __init__(self, title: str, content: str):
         self.title = title
         self.content = content
-        pass
 
-
-class ArticleSchema(ma.Schema):
-    class Meta:
-        # Fields to expose
-        fields = ('id', 'title', 'content')
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'content': self.content,
+        }
