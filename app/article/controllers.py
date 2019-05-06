@@ -34,6 +34,21 @@ def post():
     return jsonify(art.to_dict())
 
 
+@article.route('/articles/<int:article_id>', methods=['PATCH'])
+def update(article_id):
+    # data = request.get_json()
+    # art: Article = Article.query.get(article_id)
+    #
+    # if art is None:
+    #     return jsonify({'message': 'not found'}), 404
+    #
+    # art.title = data['title'] or art.title
+    # art.content = data['content'] or art.content
+    # db.session.upgrade(art)
+    # return art.to_dict()
+    pass
+
+
 @article.route('/articles/<int:article_id>', methods=['DELETE'])
 def delete(article_id: int):
     art: Article = Article.query.get(article_id)
