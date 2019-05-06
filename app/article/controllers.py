@@ -36,16 +36,8 @@ def post():
 
 @article.route('/articles/<int:article_id>', methods=['PATCH'])
 def update(article_id):
-    # data = request.get_json()
-    # art: Article = Article.query.get(article_id)
-    #
-    # if art is None:
-    #     return jsonify({'message': 'not found'}), 404
-    #
-    # art.title = data['title'] or art.title
-    # art.content = data['content'] or art.content
-    # db.session.upgrade(art)
-    # return art.to_dict()
+    # art = db.session.
+    # print(art)
     pass
 
 
