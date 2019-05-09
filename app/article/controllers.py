@@ -28,7 +28,7 @@ def collection():
 @article.route('/articles', methods=['POST'])
 def post():
     data = request.get_json()
-    art: Article = Article(data['title'], data['content'])
+    art: Article = Article(data)
     db.session.add(art)
     db.session.commit()
     return jsonify(art.to_dict())
@@ -36,9 +36,11 @@ def post():
 
 @article.route('/articles/<int:article_id>', methods=['PATCH'])
 def update(article_id):
-    # art = db.session.
-    # print(art)
-    pass
+    art = Article.query.get(article_id)
+    data = request.get_json()
+    art.from_dict(data)
+    db.session.commit()
+    return jsonify(art.to_dict())
 
 
 @article.route('/articles/<int:article_id>', methods=['DELETE'])
@@ -50,5 +52,4 @@ def delete(article_id: int):
 
     db.session.delete(art)
     db.session.commit()
-
     return jsonify(art.to_dict())
